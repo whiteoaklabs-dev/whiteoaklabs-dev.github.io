@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Join me on Stake</title>
+<meta property="og:title" content="You've been challenged on Stake">
+<meta property="og:description" content="Daily goals with a friend. Miss a day, you owe.">
+<style>
+  :root { --green:#389E7A; --ink:#1c1f1e; --muted:#6b716f; --bg:#f6f7f5; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",Helvetica,Arial,sans-serif; background:var(--bg); color:var(--ink); }
+  main { max-width:420px; margin:0 auto; padding:56px 24px; text-align:center; }
+  .logo { width:72px; height:72px; border-radius:18px; background:var(--green); display:inline-flex; align-items:center; justify-content:center; color:#fff; font-size:36px; font-weight:700; }
+  h1 { font-size:28px; margin:24px 0 8px; }
+  p { color:var(--muted); line-height:1.5; margin:0 0 24px; }
+  .btn { display:block; padding:16px; border-radius:14px; font-weight:600; font-size:17px; text-decoration:none; margin-bottom:12px; }
+  .primary { background:var(--green); color:#fff; }
+  .secondary { background:#fff; color:var(--ink); border:1px solid #e2e5e3; }
+  .code { font:600 28px ui-monospace,Menlo,monospace; letter-spacing:6px; background:#fff; border:1px dashed #cfd5d2; border-radius:12px; padding:14px; margin:8px 0 6px; }
+  small { color:var(--muted); }
+  ol { text-align:left; color:var(--muted); line-height:1.6; padding-left:20px; margin:24px 0; }
+</style>
+</head>
+<body>
+<main>
+  <div class="logo">✓✓</div>
+  <h1>You've been challenged</h1>
+  <p>Stake is daily goals with a friend. Check in with a photo each day. Miss a day, you owe.</p>
+
+  <a class="btn primary" id="open" href="#">Open in Stake</a>
+  <a class="btn secondary" id="get" href="#">Get Stake</a>
+
+  <ol>
+    <li>Get Stake and sign in.</li>
+    <li>Come back and tap <b>Open in Stake</b>, or enter this code in Friends:</li>
+  </ol>
+  <div class="code" id="code">------</div>
+  <small>You'll be connected automatically.</small>
+</main>
+<script>
+  // Download link: TestFlight until launch, then https://apps.apple.com/app/id6821068983
+  var DOWNLOAD_URL = "https://testflight.apple.com/join/MsgrDrgV";
+  var code = (new URLSearchParams(location.search).get("c") || "").toUpperCase().replace(/[^A-Z0-9]/g, "");
+  document.getElementById("code").textContent = code || "------";
+  document.getElementById("open").href = "stake://join?c=" + encodeURIComponent(code);
+  document.getElementById("get").href = DOWNLOAD_URL;
+  if (!code) { document.getElementById("open").style.display = "none"; }
+</script>
+</body>
+</html>
